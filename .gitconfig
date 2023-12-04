@@ -1,0 +1,7 @@
+[user]
+	email = 43884417+kanniep@users.noreply.github.com
+	name = Kantapon Pornprasertsakul
+[pull]
+	rebase = false
+[includeIf "gitdir:~/Workspace/"]
+    path = ~/Workspace/.gitconfig
