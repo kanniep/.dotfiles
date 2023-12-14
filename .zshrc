@@ -90,3 +90,12 @@ gorun() {
 # Psql
 export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+
+twitch-dl() {
+	docker run -it --rm \
+                --workdir '/tmp' \
+                -v $PWD:/tmp \
+                kannie/twitch-dl:latest \
+                $@
+
+}
