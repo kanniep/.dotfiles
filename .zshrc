@@ -99,3 +99,4 @@ twitch-dl() {
                 $@
 
 }
+jd(){ docker run --rm -i -v $PWD:$PWD -w $PWD josephburnett/jd "$@"; }
