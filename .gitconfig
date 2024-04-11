@@ -5,3 +5,5 @@
 	rebase = false
 [includeIf "gitdir:~/Workspace/"]
     path = ~/Workspace/.gitconfig
+[status]
+	submoduleSummary = true

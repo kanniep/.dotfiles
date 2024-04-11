@@ -40,6 +40,7 @@ alias gl='git log --pretty=format:"%h %s" --graph'
 gmp() {
 	git add -A && git commit -m $@ && git push;
 }
+alias gu='git submodule update --recursive'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -50,13 +51,16 @@ if [ -f "$HOME/CliApps/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/CliApps/g
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/CliApps/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/CliApps/google-cloud-sdk/completion.zsh.inc"; fi
 
+# Increase the IAP TCP upload bandwidth
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
 # Add Kube Configs
 export KUBECONFIG=~/.kube/config:$(find ~/.kube -type f -name '*.yaml' | tr '\n' ':')
 
 export EDITOR=nvim
 export K9S_EDITOR=nvim
 
-PATH="$PATH:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin"
+PATH="$PATH:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin"
 
 # Terraform
 tf() {
@@ -91,6 +95,7 @@ gorun() {
 export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
 
+# Custom Functions
 twitch-dl() {
 	docker run -it --rm \
                 --workdir '/tmp' \
@@ -99,4 +104,14 @@ twitch-dl() {
                 $@
 
 }
-jd(){ docker run --rm -i -v $PWD:$PWD -w $PWD josephburnett/jd "$@"; }
+gssh-zone() { gcloud compute ssh --zone $2 $3 --tunnel-through-iap --project $1; }
+gssha() { gssh-zone $1 "asia-southeast1-a" $2; }
+gsshb() { gssh-zone $1 "asia-southeast1-b" $2; }
+gsshc() { gssh-zone $1 "asia-southeast1-c" $2; }
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Backstage
+export NODE_OPTIONS="--no-node-snapshot"
