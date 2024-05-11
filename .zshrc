@@ -18,6 +18,7 @@ plugins=(
 	gcloud
 	kubectl
 	docker
+        azure
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -40,7 +41,7 @@ alias gl='git log --pretty=format:"%h %s" --graph'
 gmp() {
 	git add -A && git commit -m $@ && git push;
 }
-alias gu='git submodule update --recursive'
+alias gu='git submodule update --recursive --remote'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -62,15 +63,9 @@ export K9S_EDITOR=nvim
 
 PATH="$PATH:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin"
 
-# Terraform
-tf() {
-	docker run -it --rm \
-		--workdir '/app' \
-		-v $PWD:/app \
-		-v ~/.config/gcloud/application_default_credentials.json:/root/.config/gcloud/application_default_credentials.json:ro \
-		hashicorp/terraform:latest \
-		$@
-}
+# OpenTofu
+alias tp='tofu plan -parallelism=32'
+alias ta='tofu apply -parallelism=32'
 
 # Go Lang
 export GOPATH=$HOME/go
@@ -115,3 +110,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # Backstage
 export NODE_OPTIONS="--no-node-snapshot"
+export TF_HTTP_USERNAME=kantapon.p
+export TF_HTTP_PASSWORD=glpat-whzdgUuyTF_dfPZgq2aM
