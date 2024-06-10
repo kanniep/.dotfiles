@@ -4,10 +4,13 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode disabled #auto      # update automatically without asking
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="%d/%m/%y T"
 ZSH_CUSTOM="$HOME/.dotfiles"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 plugins=(
 	git
@@ -24,7 +27,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Prefefred editor for local and remote sessions
 EDITOR='nvim'
@@ -43,48 +46,23 @@ gmp() {
 }
 alias gu='git submodule update --recursive --remote'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/CliApps/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/CliApps/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/CliApps/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/CliApps/google-cloud-sdk/completion.zsh.inc"; fi
-
-# Increase the IAP TCP upload bandwidth
-export CLOUDSDK_PYTHON_SITEPACKAGES=1
-
-# Add Kube Configs
-export KUBECONFIG=~/.kube/config:$(find ~/.kube -type f -name '*.yaml' | tr '\n' ':')
-
 export EDITOR=nvim
 export K9S_EDITOR=nvim
 
-PATH="$PATH:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin"
+# Ruest
+PATH="/opt/homebrew/opt/curl/bin:$PATH:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin"
 
 # OpenTofu
-alias tp='tofu plan -parallelism=32'
-alias ta='tofu apply -parallelism=32'
+alias tp='tofu fmt && tofu plan -parallelism=12'
+alias ta='tofu fmt && tofu apply -parallelism=12'
 
+# Docker Alias
+alias db='docker system prune -f && docker compose build'
+alias dup='docker compose up'
+alias dupp='docker compose up -d'
+alias dd='docker compose down'
 # Go Lang
 export GOPATH=$HOME/go
-godoc() {
-        docker run -it --rm \
-                --workdir '/app' \
-                -v $PWD:/app \
-                -v $HOME/go:/go \
-                golang:1.21-alpine \
-                go $@
-}
-gorun() {
-        docker run -it --rm \
-                -v $PWD:/app \
-                -v $HOME/go:/go \
-                -v $HOME/.config/gcloud/application_default_credentials.json:/root/.config/gcloud/application_default_credentials.json:ro \
-                golang:1.21-alpine \
-                $@
-}
 
 # Psql
 export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
@@ -108,7 +86,24 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# Backstage
+# Gitlab
 export NODE_OPTIONS="--no-node-snapshot"
 export TF_HTTP_USERNAME=kantapon.p
 export TF_HTTP_PASSWORD=glpat-whzdgUuyTF_dfPZgq2aM
+
+
+# Google Cloud
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/CliApps/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/CliApps/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/CliApps/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/CliApps/google-cloud-sdk/completion.zsh.inc"; fi
+
+# Increase the IAP TCP upload bandwidth
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
+# Add Kube Configs
+export KUBECONFIG=~/.kube/config:$(find ~/.kube -type f -name '*.yaml' | tr '\n' ':')
+
+# direnv
+eval "$(direnv hook zsh)"
