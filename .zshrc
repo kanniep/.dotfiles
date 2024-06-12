@@ -12,16 +12,18 @@ ZSH_CUSTOM="$HOME/.dotfiles"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
 plugins=(
 	git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	fast-syntax-highlighting
-	aws
+#	aws
 	gcloud
-	kubectl
+#	kubectl
 	docker
-        azure
+ #       azure
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -53,8 +55,8 @@ export K9S_EDITOR=nvim
 PATH="/opt/homebrew/opt/curl/bin:$PATH:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin"
 
 # OpenTofu
-alias tp='tofu fmt && tofu plan -parallelism=12'
-alias ta='tofu fmt && tofu apply -parallelism=12'
+alias tp='tofu fmt && tofu plan -parallelism=12 -out=tfplan'
+alias ta='tofu apply -parallelism=12 tfplan && rm tfplan'
 
 # Docker Alias
 alias db='docker system prune -f && docker compose build'
@@ -88,9 +90,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Gitlab
 export NODE_OPTIONS="--no-node-snapshot"
-export TF_HTTP_USERNAME=kantapon.p
-export TF_HTTP_PASSWORD=glpat-whzdgUuyTF_dfPZgq2aM
-
 
 # Google Cloud
 # The next line updates PATH for the Google Cloud SDK.
