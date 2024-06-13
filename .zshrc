@@ -12,17 +12,15 @@ ZSH_CUSTOM="$HOME/.dotfiles"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
 plugins=(
-	git
+	# git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	fast-syntax-highlighting
 #	aws
-	gcloud
+	# gcloud
 #	kubectl
-	docker
+	# docker
  #       azure
 )
 
@@ -32,7 +30,11 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 # Prefefred editor for local and remote sessions
-EDITOR='nvim'
+export EDITOR='nvim'
+export K9S_EDITOR='nvim'
+
+# Path
+PATH="/opt/homebrew/opt/curl/bin:$PATH:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -47,12 +49,6 @@ gmp() {
 	git add -A && git commit -m $@ && git push;
 }
 alias gu='git submodule update --recursive --remote'
-
-export EDITOR=nvim
-export K9S_EDITOR=nvim
-
-# Ruest
-PATH="/opt/homebrew/opt/curl/bin:$PATH:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin"
 
 # OpenTofu
 alias tp='tofu fmt && tofu plan -parallelism=12 -out=tfplan'
@@ -71,24 +67,17 @@ export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
 
 # Custom Functions
-twitch-dl() {
-	docker run -it --rm \
-                --workdir '/tmp' \
-                -v $PWD:/tmp \
-                kannie/twitch-dl:latest \
-                $@
-
-}
 gssh-zone() { gcloud compute ssh --zone $2 $3 --tunnel-through-iap --project $1; }
 gssha() { gssh-zone $1 "asia-southeast1-a" $2; }
 gsshb() { gssh-zone $1 "asia-southeast1-b" $2; }
 gsshc() { gssh-zone $1 "asia-southeast1-c" $2; }
 
+# NVM
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# Gitlab
 export NODE_OPTIONS="--no-node-snapshot"
 
 # Google Cloud
@@ -102,7 +91,7 @@ if [ -f "$HOME/CliApps/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Cli
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
 # Add Kube Configs
-export KUBECONFIG=~/.kube/config:$(find ~/.kube -type f -name '*.yaml' | tr '\n' ':')
+# export KUBECONFIG=~/.kube/config:$(find ~/.kube -type f -name '*.yaml' | tr '\n' ':')
 
 # direnv
-eval "$(direnv hook zsh)"
+#eval "$(direnv hook zsh)"
