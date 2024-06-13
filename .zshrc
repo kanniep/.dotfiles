@@ -94,4 +94,5 @@ export CLOUDSDK_PYTHON_SITEPACKAGES=1
 # export KUBECONFIG=~/.kube/config:$(find ~/.kube -type f -name '*.yaml' | tr '\n' ':')
 
 # direnv
-#eval "$(direnv hook zsh)"
+export DIRENV_LOG_FORMAT=
+eval "$(direnv hook zsh)"
