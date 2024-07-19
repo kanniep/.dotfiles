@@ -4,26 +4,33 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-zstyle ':omz:update' mode disabled #auto      # update automatically without asking
+zstyle ':omz:update' mode disabled
+
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="%d/%m/%y T"
 ZSH_CUSTOM="$HOME/.dotfiles"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# History
+export HISTFILE=~/.zsh_history
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+setopt SHARE_HISTORY
+export HISTTIMEFORMAT="[%F %T] "
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+
 
 plugins=(
-	# git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	fast-syntax-highlighting
-#	aws
+	# git
+	# aws
 	# gcloud
-#	kubectl
+	# kubectl
 	# docker
- #       azure
+	# azure
 )
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -40,8 +47,6 @@ PATH="/opt/homebrew/opt/curl/bin:$PATH:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/
 # export ARCHFLAGS="-arch x86_64"
 
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gs='git status'
 alias gp='git pull'
 alias gl='git log --pretty=format:"%h %s" --graph'
@@ -91,8 +96,14 @@ if [ -f "$HOME/CliApps/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Cli
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
 
 # Add Kube Configs
+alias k=kubectl
 # export KUBECONFIG=~/.kube/config:$(find ~/.kube -type f -name '*.yaml' | tr '\n' ':')
 
-# direnv
+# OpenVPN
+alias ovpn='/Applications/OpenVPN\ Connect/OpenVPN\ Connect.app/contents/MacOS/OpenVPN\ Connect'
+ovpnr() { ovpn --remove-profile=admin && ovpn --import-profile='/Users/a667356/Workspace/arise-ccoe/ovpn-admin-config/KTB Cloud VPN Admin.ovpn' --name=admin --username=kantapon.p@arise.tech }
+
+# END OF FILE EVAL
 export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
