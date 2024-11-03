@@ -1,9 +1,9 @@
 [user]
-	email = 43884417+kanniep@users.noreply.github.com
-	name = Kantapon Pornprasertsakul
+        email = 43884417+kanniep@users.noreply.github.com
+        name = Kantapon Pornprasertsakul
 [pull]
-	rebase = false
+        rebase = false
 [includeIf "gitdir:~/Workspace/"]
     path = ~/Workspace/.gitconfig
 [status]
-	submoduleSummary = true
+        submoduleSummary = true
