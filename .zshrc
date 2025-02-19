@@ -68,6 +68,7 @@ alias db='docker system prune -f && docker compose build'
 alias dup='docker compose up'
 alias dupp='docker compose up -d'
 alias dd='docker compose down'
+
 # Go Lang
 export GOPATH=$HOME/go
 
@@ -125,6 +126,9 @@ timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
+
+# OLLAMA
+alias o=ollama
 
 # END OF FILE EVAL
 export DIRENV_LOG_FORMAT=
