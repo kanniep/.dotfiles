@@ -7,3 +7,5 @@
     path = ~/Workspace/.gitconfig
 [status]
         submoduleSummary = true
+[core]
+	editor = code --wait

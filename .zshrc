@@ -119,7 +119,23 @@ alias k=kubectl
 
 # OpenVPN
 alias ovpn='/Applications/OpenVPN\ Connect/OpenVPN\ Connect.app/contents/MacOS/OpenVPN\ Connect'
-ovpnr() { ovpn --remove-profile=admin && ovpn --import-profile='/Users/a667356/Workspace/arise-ccoe/ovpn-admin-config/KTB Cloud VPN Admin.ovpn' --name=admin --username=$work_email }
+ovpnr() {
+	password=$(curl -s -X POST \
+  -d "grant_type=password" \
+  -d "client_id=${PLATFORM_KEYCLOAK_CLIENT_ID}" \
+  -d "client_secret=${PLATFORM_KEYCLOAK_CLIENT_SECRET}" \
+  -d "username=${PLATFORM_KEYCLOAK_USER}" \
+  -d "password=${PLATFORM_KEYCLOAK_PASS}" \
+  -d "scope=email" \
+  https://platform-keycloak.arisetech.dev/realms/platform/protocol/openid-connect/token \
+  | jq -r '.access_token' \
+  | cut -d "." -f2 \
+  | base64 -D \
+  | jq -r '.sid')
+	ovpn --remove-profile=admin && \
+	ovpn --import-profile='/Users/a667356/Workspace/arise-ccoe/ovpn-admin-config/KTB Cloud VPN Admin.ovpn' \
+	--name=admin --username=$work_email --password=$password
+}
 
 # ZSH time
 timezsh() {
