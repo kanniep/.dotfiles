@@ -1,15 +1,16 @@
 - defaults:
-    link:
-      create: true
-      relink: true
+      link:
+          create: true
+          relink: true
 
 - clean: ["~"]
 
 - link:
-    ~/.gitconfig: .gitconfig
-    ~/.zshrc: .zshrc
-    ~/.config/nvim/init.lua: nvim-init.lua
+      ~/.gitconfig: .gitconfig
+      ~/.zshrc: .zshrc
+      ~/.config/nvim/init.lua: nvim-init.lua
+      ~/.wezterm.lua: .wezterm.lua
+      ~/.colima/default/colima.yaml: colima.yaml
 
 - shell:
-    - git submodule update --init --recursive
-    - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+      - git submodule update --init --recursive

@@ -8,4 +8,4 @@
 [status]
         submoduleSummary = true
 [core]
-	editor = code --wait
+	editor = nvim
