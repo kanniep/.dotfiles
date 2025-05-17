@@ -11,10 +11,16 @@
   ],
   "icon_theme": "Material Icon Theme",
   "base_keymap": "VSCode",
+  "features": { "edit_prediction_provider": "zed" },
   "buffer_font_family": "Fira Code",
-  "ui_font_family": "Fira Code",
   "buffer_font_size": 13,
-  "ui_font_size": 14,
+  "buffer_font_weight": 400,
+  "buffer_line_height": {
+    "custom": 1.45
+  },
+  "ui_font_family": "Fira Code",
+  "ui_font_size": 13,
+  "ui_font_weight": 500,
   "soft_wrap": "editor_width",
   "theme": {
     "mode": "system",
@@ -113,6 +119,7 @@
       "show": null
     }
   },
+  "agent_font_size": 14,
   "agent": {
     "default_profile": "write",
     "single_file_review": true,
@@ -164,7 +171,7 @@
         {
           "name": "gpt-4.1",
           "display_name": "litellm-gpt-4.1",
-          "max_tokens": 1000000,
+          "max_tokens": 0,
           "mode": {
             "type": "thinking"
           }
