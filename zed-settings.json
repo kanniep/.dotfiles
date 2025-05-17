@@ -1,0 +1,206 @@
+{
+  "ssh_connections": [
+    {
+      "host": "pi",
+      "projects": [
+        {
+          "paths": ["/home/kannie"]
+        }
+      ]
+    }
+  ],
+  "icon_theme": "Material Icon Theme",
+  "base_keymap": "VSCode",
+  "agent": {
+    "default_profile": "write",
+    "single_file_review": true,
+    "always_allow_tool_actions": true,
+    "profiles": {
+      "write": {
+        "name": "Write",
+        "tools": {
+          "open": true,
+          "terminal": true,
+          "batch_tool": true,
+          "code_actions": true,
+          "code_symbols": true,
+          "contents": true,
+          "copy_path": true,
+          "create_file": true,
+          "delete_path": true,
+          "diagnostics": true,
+          "edit_file": true,
+          "fetch": true,
+          "list_directory": true,
+          "move_path": true,
+          "now": true,
+          "find_path": true,
+          "read_file": true,
+          "grep": true,
+          "rename": true,
+          "symbol_info": true,
+          "thinking": true,
+          "web_search": true,
+          "create_directory": true
+        },
+        "enable_all_context_servers": true,
+        "notify_when_agent_waiting": true,
+        "context_servers": {}
+      }
+    },
+    "default_model": {
+      "provider": "openai",
+      "model": "gemini-2.5-flash-preview-04-17"
+    },
+    "version": "2"
+  },
+  "buffer_font_family": "Fira Code",
+  "ui_font_family": "Fira Code",
+  "buffer_font_size": 13,
+  "ui_font_size": 14,
+  "soft_wrap": "editor_width",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+  "lsp": {
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "diagnosticMode": "workspace",
+          "typeCheckingMode": "basic"
+        },
+        "python": {
+          "pythonPath": ".venv/bin/python"
+        }
+      }
+    },
+    "taplo": {
+      "settings": {
+        "array_auto_collapse": false
+      }
+    },
+    "rust-analyzer": {
+      "initialization_options": {
+        "inlayHints": {
+          "maxLength": null,
+          "lifetimeElisionHints": {
+            "enable": "skip_trivial",
+            "useParameterNames": true
+          },
+          "closureReturnTypeHints": {
+            "enable": "always"
+          }
+        }
+      }
+    },
+    "terraform-ls": {
+      "initialization_options": {
+        "experimentalFeatures": {
+          "prefillRequiredFields": true
+        }
+      }
+    }
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["pyright", "ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        },
+        {
+          "code_actions": {
+            "source.fixAll.ruff": true,
+            "source.organizeImports.ruff": true
+          }
+        }
+      ]
+    }
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "terminal": {
+    "alternate_scroll": "off",
+    "blinking": "terminal_controlled",
+    "copy_on_select": false,
+    "dock": "bottom",
+    "default_width": 640,
+    "default_height": 320,
+    "detect_venv": {
+      "on": {
+        "directories": [".env", "env", ".venv", "venv"],
+        "activate_script": "default"
+      }
+    },
+    "env": {},
+    "font_family": "Fira Code",
+    "font_features": null,
+    "font_size": 12,
+    "line_height": "comfortable",
+    "option_as_meta": false,
+    "button": true,
+    "shell": "system",
+    "toolbar": {
+      "breadcrumbs": true
+    },
+    "working_directory": "current_project_directory",
+    "scrollbar": {
+      "show": null
+    }
+  },
+  "language_models": {
+    "openai": {
+      "version": "1",
+      "api_url": "http://192.168.1.2:4001/v1",
+      "available_models": [
+        {
+          "name": "gpt-4.1",
+          "display_name": "litellm-gpt-4.1",
+          "max_tokens": 1000000,
+          "mode": {
+            "type": "thinking"
+          }
+        },
+        {
+          "name": "gpt-4.1-mini",
+          "display_name": "litellm-gpt-4.1-mini",
+          "max_tokens": 1000000,
+          "mode": {
+            "type": "thinking"
+          }
+        },
+        {
+          "name": "gpt-4.1-nano",
+          "display_name": "litellm-gpt-4.1-nano",
+          "max_tokens": 1000000
+        },
+        {
+          "name": "bedrock-claude-3-7-sonnet",
+          "display_name": "litellm-claude-3-7",
+          "max_tokens": 1000000,
+          "mode": {
+            "type": "thinking"
+          }
+        },
+        {
+          "name": "gemini-2.5-pro-preview-05-06",
+          "display_name": "llitellm-gemini-2.5",
+          "max_tokens": 1000000
+        },
+        {
+          "name": "gemini-2.5-flash-preview-04-17",
+          "display_name": "litellm-gemini-2.5-flash",
+          "max_tokens": 1000000
+        }
+      ]
+    }
+  }
+}

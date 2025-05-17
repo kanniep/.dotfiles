@@ -42,7 +42,7 @@ export EDITOR='nvim'
 export K9S_EDITOR='nvim'
 
 # Path
-PATH="$PATH:/opt/homebrew/opt/curl/bin:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin:$HOME/.local/bin:/opt/homebrew/opt/openjdk/bin:/usr/local/bin"
+PATH="$PATH:/opt/homebrew/opt/curl/bin:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin:$HOME/.local/bin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:/usr/local/bin"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
