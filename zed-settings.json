@@ -1,4 +1,25 @@
 {
+  "context_servers": {
+    "google-cloud-cmp-python": {
+      "source": "custom",
+      "command": "/Users/ar667356/Personal/google-cloud-mcp-python/.venv/bin/python",
+      "args": [
+        "/Users/ar667356/Personal/google-cloud-mcp-python/src/main.py",
+        "--transport",
+        "stdio"
+      ],
+      "env": null
+    },
+    "playwright": {
+      "source": "custom",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest", "--browser", "chrome", "--isolated"]
+    },
+    "mcpServers": {
+      "source": "extension",
+      "settings": {}
+    }
+  },
   "ssh_connections": [
     {
       "host": "pi",
@@ -9,7 +30,7 @@
       ]
     }
   ],
-  "icon_theme": "Material Icon Theme",
+  "icon_theme": "Catppuccin Mocha",
   "base_keymap": "VSCode",
   "features": { "edit_prediction_provider": "zed" },
   "buffer_font_family": "Fira Code",
@@ -31,7 +52,7 @@
     "pyright": {
       "settings": {
         "python.analysis": {
-          "diagnosticMode": "workspace",
+          "diagnosticMode": "openFilesOnly",
           "typeCheckingMode": "basic"
         },
         "python": {
@@ -82,12 +103,20 @@
             "source.organizeImports.ruff": true
           }
         }
-      ]
+      ],
+      "remove_trailing_whitespace_on_save": true,
+      "use_auto_surround": true,
+      "use_autoclose": true,
+      "show_completions_on_input": true,
+      "enable_language_server": true
+    },
+    "SQL": {
+      "format_on_save": "on"
     }
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 1000
+      "milliseconds": 500
     }
   },
   "terminal": {
@@ -119,11 +148,21 @@
       "show": null
     }
   },
-  "agent_font_size": 14,
+  "agent_font_size": 15,
   "agent": {
-    "default_profile": "write",
+    "commit_message_model": {
+      "provider": "google",
+      "model": "gemini-2.5-flash"
+    },
+    "inline_assistant_model": {
+      "provider": "google",
+      "model": "gemini-2.5-flash"
+    },
     "single_file_review": true,
     "always_allow_tool_actions": true,
+    "stream_edits": true,
+    "enable_feedback": false,
+    "default_profile": "write",
     "profiles": {
       "write": {
         "name": "Write",
@@ -135,7 +174,6 @@
           "code_symbols": true,
           "contents": true,
           "copy_path": true,
-          "create_file": true,
           "delete_path": true,
           "diagnostics": true,
           "edit_file": true,
@@ -150,31 +188,71 @@
           "symbol_info": true,
           "thinking": true,
           "web_search": true,
-          "create_directory": true
+          "create_directory": true,
+          "create_file": true
         },
         "enable_all_context_servers": true,
-        "notify_when_agent_waiting": true,
         "context_servers": {}
       }
     },
     "default_model": {
-      "provider": "openai",
-      "model": "gpt-4.1-mini"
+      "provider": "amazon-bedrock",
+      "model": "claude-4-sonnet-thinking"
     },
-    "version": "2"
+    "notify_when_agent_waiting": "primary_screen",
+    "play_sound_when_agent_done": true
   },
+  "tabs": {
+    "file_icons": true,
+    "show_diagnostics": "all"
+  },
+  "extend_comment_on_newline": false,
+  "auto_update": true,
+  "lsp_document_colors": "background",
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings"
+  ],
   "language_models": {
+    "bedrock": {
+      "authentication_method": "named_profile",
+      "region": "ap-southeast-1",
+      "profile": "ccoe-center-bedrock"
+    },
+    "google": {
+      "available_models": [
+        {
+          "name": "gemini-2.5-pro",
+          "display_name": "gemini-2.5-pro",
+          "max_tokens": 200000,
+          "mode": {
+            "type": "thinking"
+          }
+        },
+        {
+          "name": "gemini-2.5-flash",
+          "display_name": "gemini-2.5-flash",
+          "max_tokens": 50000,
+          "mode": {
+            "type": "thinking"
+          }
+        }
+      ]
+    },
     "openai": {
-      "version": "1",
       "api_url": "http://192.168.1.2:4001/v1",
       "available_models": [
         {
           "name": "gpt-4.1",
           "display_name": "litellm-gpt-4.1",
-          "max_tokens": 0,
-          "mode": {
-            "type": "thinking"
-          }
+          "max_tokens": 1000000
         },
         {
           "name": "gpt-4.1-mini",
@@ -185,26 +263,18 @@
           "name": "gpt-4.1-nano",
           "display_name": "litellm-gpt-4.1-nano",
           "max_tokens": 1000000
-        },
-        {
-          "name": "bedrock-claude-3-7-sonnet",
-          "display_name": "litellm-claude-3-7",
-          "max_tokens": 1000000,
-          "mode": {
-            "type": "thinking"
-          }
-        },
-        {
-          "name": "gemini-2.5-pro-preview-05-06",
-          "display_name": "llitellm-gemini-2.5",
-          "max_tokens": 1000000
-        },
-        {
-          "name": "gemini-2.5-flash-preview-04-17",
-          "display_name": "litellm-gemini-2.5-flash",
-          "max_tokens": 1000000
         }
       ]
     }
+  },
+  "file_types": {
+    "Helm": [
+      "**/templates/**/*.tpl",
+      "**/templates/**/*.yaml",
+      "**/templates/**/*.yml",
+      "**/helmfile.d/**/*.yaml",
+      "**/helmfile.d/**/*.yml",
+      "**/values*.yaml"
+    ]
   }
 }

@@ -63,11 +63,7 @@ alias gu='git submodule update --recursive --remote'
 alias tp='tofu fmt && tofu plan -parallelism=12 -out=tfplan'
 alias ta='tofu apply -parallelism=12 tfplan && rm tfplan'
 
-# Docker Alias
-alias db='docker system prune -f && docker compose build'
-alias dup='docker compose up'
-alias dupp='docker compose up -d'
-alias dd='docker compose down'
+alias d='docker'
 
 # Go Lang
 export GOPATH=$HOME/go
