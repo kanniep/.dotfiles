@@ -1,7 +1,7 @@
 {
   "context_servers": {
     "google-cloud-cmp-python": {
-      "source": "custom",
+      "enabled": false,
       "command": "/Users/ar667356/Personal/google-cloud-mcp-python/.venv/bin/python",
       "args": [
         "/Users/ar667356/Personal/google-cloud-mcp-python/src/main.py",
@@ -11,23 +11,30 @@
       "env": null
     },
     "playwright": {
-      "source": "custom",
+      "enabled": false,
       "command": "npx",
       "args": ["@playwright/mcp@latest", "--browser", "chrome", "--isolated"]
     },
     "mcpServers": {
-      "source": "extension",
       "settings": {}
     }
   },
   "ssh_connections": [
     {
       "host": "pi",
+      "args": [],
       "projects": [
         {
-          "paths": ["/home/kannie"]
+          "paths": [
+            "/home/kannie"
+          ]
         }
       ]
+    },
+    {
+      "host": "pizza",
+      "args": [],
+      "projects": []
     }
   ],
   "icon_theme": "Catppuccin Mocha",
@@ -85,6 +92,33 @@
           "prefillRequiredFields": true
         }
       }
+    },
+    "texlab": {
+      "settings": {
+        "texlab": {
+          "build": {
+            "onSave": true,
+            "forwardSearchAfter": true
+          },
+          "forwardSearch": {
+            "executable": "zathura",
+            "args": [
+              "--synctex-forward",
+              "%l:1:%f",
+              "-x",
+              "zed %%{input}:%%{line}",
+              "%p"
+            ]
+          },
+          "latexFormatter": "latexindent", // default value (this line not necessary)
+          "latexindent": {
+            // instead of explicitly setting CLI args directly, configure behaviour here
+            "modifyLineBreaks": true,
+            "local": "path/to/config",
+            "replacement": null // place for flags like -rr -rv -r
+          }
+        }
+      }
     }
   },
   "languages": {
@@ -97,12 +131,8 @@
             "name": "ruff"
           }
         },
-        {
-          "code_actions": {
-            "source.fixAll.ruff": true,
-            "source.organizeImports.ruff": true
-          }
-        }
+        { "code_action": "source.fixAll.ruff" },
+        { "code_action": "source.organizeImports.ruff" }
       ],
       "remove_trailing_whitespace_on_save": true,
       "use_auto_surround": true,
@@ -111,6 +141,15 @@
       "enable_language_server": true
     },
     "SQL": {
+      "format_on_save": "on"
+    },
+    "LaTeX": {
+      "formatter": {
+        "external": {
+          "command": "latexindent", // or choose specific path
+          "arguments": ["--modifylinebreaks"] // control behaviour with flags
+        }
+      },
       "format_on_save": "on"
     }
   },
@@ -148,59 +187,17 @@
       "show": null
     }
   },
-  "agent_font_size": 15,
+  "agent_ui_font_size": 15,
   "agent": {
-    "commit_message_model": {
-      "provider": "google",
-      "model": "gemini-2.5-flash"
-    },
     "inline_assistant_model": {
       "provider": "google",
-      "model": "gemini-2.5-flash"
-    },
-    "single_file_review": true,
-    "always_allow_tool_actions": true,
-    "stream_edits": true,
-    "enable_feedback": false,
-    "default_profile": "write",
-    "profiles": {
-      "write": {
-        "name": "Write",
-        "tools": {
-          "open": true,
-          "terminal": true,
-          "batch_tool": true,
-          "code_actions": true,
-          "code_symbols": true,
-          "contents": true,
-          "copy_path": true,
-          "delete_path": true,
-          "diagnostics": true,
-          "edit_file": true,
-          "fetch": true,
-          "list_directory": true,
-          "move_path": true,
-          "now": true,
-          "find_path": true,
-          "read_file": true,
-          "grep": true,
-          "rename": true,
-          "symbol_info": true,
-          "thinking": true,
-          "web_search": true,
-          "create_directory": true,
-          "create_file": true
-        },
-        "enable_all_context_servers": true,
-        "context_servers": {}
-      }
+      "model": "gemini-2.5-pro"
     },
     "default_model": {
-      "provider": "amazon-bedrock",
-      "model": "claude-4-sonnet-thinking"
+      "provider": "google",
+      "model": "gemini-3-pro-preview"
     },
-    "notify_when_agent_waiting": "primary_screen",
-    "play_sound_when_agent_done": true
+    "model_parameters": []
   },
   "tabs": {
     "file_icons": true,
@@ -229,6 +226,14 @@
     "google": {
       "available_models": [
         {
+          "name": "gemini-3-pro-preview",
+          "display_name": "gemini-3.0-pro",
+          "max_tokens": 200000,
+          "mode": {
+            "type": "thinking"
+          }
+        },
+        {
           "name": "gemini-2.5-pro",
           "display_name": "gemini-2.5-pro",
           "max_tokens": 200000,
@@ -255,13 +260,8 @@
           "max_tokens": 1000000
         },
         {
-          "name": "gpt-4.1-mini",
-          "display_name": "litellm-gpt-4.1-mini",
-          "max_tokens": 1000000
-        },
-        {
-          "name": "gpt-4.1-nano",
-          "display_name": "litellm-gpt-4.1-nano",
+          "name": "gpt-5",
+          "display_name": "litellm-gpt-5",
           "max_tokens": 1000000
         }
       ]

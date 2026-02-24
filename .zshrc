@@ -42,7 +42,7 @@ export EDITOR='nvim'
 export K9S_EDITOR='nvim'
 
 # Path
-PATH="$PATH:/opt/homebrew/opt/curl/bin:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin:$HOME/.local/bin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:/usr/local/bin"
+PATH="$PATH:/opt/homebrew/opt/curl/bin:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/opt/libpq/bin:$HOME/.cargo/bin:$HOME/.local/bin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:/usr/local/bin:$HOME/.claude/local"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -58,6 +58,7 @@ gmp() {
 	git add -A && git commit -m $@ && git push;
 }
 alias gu='git submodule update --recursive --remote'
+alias nsc='osascript ~/Documents/apple-scripts/toggle-natural-scrolling.scpt'
 
 # OpenTofu
 alias tp='tofu fmt && tofu plan -parallelism=12 -out=tfplan'
@@ -145,3 +146,5 @@ alias o=ollama
 # END OF FILE EVAL
 export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
+
+alias claude="/Users/ar667356/.claude/local/claude"
