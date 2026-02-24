@@ -1,16 +1,17 @@
 - defaults:
-      link:
-          create: true
-          relink: true
+    link:
+      create: true
+      relink: true
 
 - clean: ["~"]
 
 - link:
-      ~/.gitconfig: .gitconfig
-      ~/.zshrc: .zshrc
-      ~/.config/nvim/init.lua: nvim-init.lua
-      ~/.wezterm.lua: .wezterm.lua
-      ~/.config/zed/settings.json: zed-settings.json
+    ~/.gitconfig: .gitconfig
+    ~/.zshrc: .zshrc
+    ~/.config/nvim/init.lua: nvim-init.lua
+    ~/.wezterm.lua: .wezterm.lua
+    ~/.config/zed/settings.json: zed-settings.json
+    ~/Workspace/ruff.toml: ruff.toml
 
 - shell:
-      - git submodule update --init --recursive
+    - git submodule update --init --recursive
