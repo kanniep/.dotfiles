@@ -10,7 +10,6 @@
       ~/.zshrc: .zshrc
       ~/.config/nvim/init.lua: nvim-init.lua
       ~/.wezterm.lua: .wezterm.lua
-      ~/.colima/default/colima.yaml: colima.yaml
       ~/.config/zed/settings.json: zed-settings.json
 
 - shell:
