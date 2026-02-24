@@ -1,6 +1,6 @@
 {
   "edit_predictions": {
-    "provider": "zed"
+    "provider": "zed",
   },
   "context_servers": {
     "google-cloud-cmp-python": {
@@ -9,18 +9,18 @@
       "args": [
         "/Users/ar667356/Personal/google-cloud-mcp-python/src/main.py",
         "--transport",
-        "stdio"
+        "stdio",
       ],
-      "env": null
+      "env": null,
     },
     "playwright": {
       "enabled": false,
       "command": "npx",
-      "args": ["@playwright/mcp@latest", "--browser", "chrome", "--isolated"]
+      "args": ["@playwright/mcp@latest", "--browser", "chrome", "--isolated"],
     },
     "mcpServers": {
-      "settings": {}
-    }
+      "settings": {},
+    },
   },
   "ssh_connections": [
     {
@@ -28,17 +28,15 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/home/kannie"
-          ]
-        }
-      ]
+          "paths": ["/home/kannie"],
+        },
+      ],
     },
     {
       "host": "pizza",
       "args": [],
-      "projects": []
-    }
+      "projects": [],
+    },
   ],
   "icon_theme": "Catppuccin Mocha",
   "base_keymap": "VSCode",
@@ -46,7 +44,7 @@
   "buffer_font_size": 13,
   "buffer_font_weight": 400,
   "buffer_line_height": {
-    "custom": 1.45
+    "custom": 1.45,
   },
   "ui_font_family": "Fira Code",
   "ui_font_size": 13,
@@ -55,24 +53,19 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Mocha",
   },
   "lsp": {
-    "pyright": {
+    "ty": {
       "settings": {
         "python.analysis": {
           "diagnosticMode": "openFilesOnly",
-          "typeCheckingMode": "basic"
+          "typeCheckingMode": "basic",
         },
         "python": {
-          "pythonPath": ".venv/bin/python"
-        }
-      }
-    },
-    "taplo": {
-      "settings": {
-        "array_auto_collapse": false
-      }
+          "pythonPath": ".venv/bin/python",
+        },
+      },
     },
     "rust-analyzer": {
       "initialization_options": {
@@ -80,27 +73,27 @@
           "maxLength": null,
           "lifetimeElisionHints": {
             "enable": "skip_trivial",
-            "useParameterNames": true
+            "useParameterNames": true,
           },
           "closureReturnTypeHints": {
-            "enable": "always"
-          }
-        }
-      }
+            "enable": "always",
+          },
+        },
+      },
     },
     "terraform-ls": {
       "initialization_options": {
         "experimentalFeatures": {
-          "prefillRequiredFields": true
-        }
-      }
+          "prefillRequiredFields": true,
+        },
+      },
     },
     "texlab": {
       "settings": {
         "texlab": {
           "build": {
             "onSave": true,
-            "forwardSearchAfter": true
+            "forwardSearchAfter": true,
           },
           "forwardSearch": {
             "executable": "zathura",
@@ -109,56 +102,59 @@
               "%l:1:%f",
               "-x",
               "zed %%{input}:%%{line}",
-              "%p"
-            ]
+              "%p",
+            ],
           },
           "latexFormatter": "latexindent", // default value (this line not necessary)
           "latexindent": {
             // instead of explicitly setting CLI args directly, configure behaviour here
             "modifyLineBreaks": true,
             "local": "path/to/config",
-            "replacement": null // place for flags like -rr -rv -r
-          }
-        }
-      }
-    }
+            "replacement": null, // place for flags like -rr -rv -r
+          },
+        },
+      },
+    },
   },
   "languages": {
     "Python": {
-      "language_servers": ["pyright", "ruff"],
+      "language_servers": ["ty", "ruff", "!basedpyright"],
       "format_on_save": "on",
       "formatter": [
         {
           "language_server": {
-            "name": "ruff"
-          }
+            "name": "ruff",
+          },
         },
         { "code_action": "source.fixAll.ruff" },
-        { "code_action": "source.organizeImports.ruff" }
+        { "code_action": "source.organizeImports.ruff" },
       ],
       "remove_trailing_whitespace_on_save": true,
       "use_auto_surround": true,
       "use_autoclose": true,
       "show_completions_on_input": true,
-      "enable_language_server": true
+      "enable_language_server": true,
+      "code_actions_on_format": {
+        "source.organizeImports.ruff": true,
+      },
     },
     "SQL": {
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "LaTeX": {
       "formatter": {
         "external": {
           "command": "latexindent", // or choose specific path
-          "arguments": ["--modifylinebreaks"] // control behaviour with flags
-        }
+          "arguments": ["--modifylinebreaks"], // control behaviour with flags
+        },
       },
-      "format_on_save": "on"
-    }
+      "format_on_save": "on",
+    },
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 500
-    }
+      "milliseconds": 500,
+    },
   },
   "terminal": {
     "alternate_scroll": "off",
@@ -170,8 +166,8 @@
     "detect_venv": {
       "on": {
         "directories": [".env", "env", ".venv", "venv"],
-        "activate_script": "default"
-      }
+        "activate_script": "default",
+      },
     },
     "env": {},
     "font_family": "Fira Code",
@@ -182,28 +178,28 @@
     "button": true,
     "shell": "system",
     "toolbar": {
-      "breadcrumbs": true
+      "breadcrumbs": true,
     },
     "working_directory": "current_project_directory",
     "scrollbar": {
-      "show": null
-    }
+      "show": null,
+    },
   },
   "agent_ui_font_size": 15,
   "agent": {
     "inline_assistant_model": {
       "provider": "google",
-      "model": "gemini-2.5-pro"
+      "model": "gemini-2.5-pro",
     },
     "default_model": {
       "provider": "google",
-      "model": "gemini-3-pro-preview"
+      "model": "gemini-3-pro-preview",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
   "tabs": {
     "file_icons": true,
-    "show_diagnostics": "all"
+    "show_diagnostics": "all",
   },
   "extend_comment_on_newline": false,
   "auto_update": true,
@@ -217,13 +213,13 @@
     "**/.DS_Store",
     "**/Thumbs.db",
     "**/.classpath",
-    "**/.settings"
+    "**/.settings",
   ],
   "language_models": {
     "bedrock": {
       "authentication_method": "named_profile",
       "region": "ap-southeast-1",
-      "profile": "ccoe-center-bedrock"
+      "profile": "ccoe-center-bedrock",
     },
     "google": {
       "available_models": [
@@ -232,26 +228,26 @@
           "display_name": "gemini-3.0-pro",
           "max_tokens": 200000,
           "mode": {
-            "type": "thinking"
-          }
+            "type": "thinking",
+          },
         },
         {
           "name": "gemini-2.5-pro",
           "display_name": "gemini-2.5-pro",
           "max_tokens": 200000,
           "mode": {
-            "type": "thinking"
-          }
+            "type": "thinking",
+          },
         },
         {
           "name": "gemini-2.5-flash",
           "display_name": "gemini-2.5-flash",
           "max_tokens": 50000,
           "mode": {
-            "type": "thinking"
-          }
-        }
-      ]
+            "type": "thinking",
+          },
+        },
+      ],
     },
     "openai": {
       "api_url": "http://192.168.1.2:4001/v1",
@@ -259,15 +255,15 @@
         {
           "name": "gpt-4.1",
           "display_name": "litellm-gpt-4.1",
-          "max_tokens": 1000000
+          "max_tokens": 1000000,
         },
         {
           "name": "gpt-5",
           "display_name": "litellm-gpt-5",
-          "max_tokens": 1000000
-        }
-      ]
-    }
+          "max_tokens": 1000000,
+        },
+      ],
+    },
   },
   "file_types": {
     "Helm": [
@@ -276,7 +272,7 @@
       "**/templates/**/*.yml",
       "**/helmfile.d/**/*.yaml",
       "**/helmfile.d/**/*.yml",
-      "**/values*.yaml"
-    ]
-  }
+      "**/values*.yaml",
+    ],
+  },
 }
