@@ -57,15 +57,7 @@
   },
   "lsp": {
     "ty": {
-      "settings": {
-        "python.analysis": {
-          "diagnosticMode": "openFilesOnly",
-          "typeCheckingMode": "basic",
-        },
-        "python": {
-          "pythonPath": ".venv/bin/python",
-        },
-      },
+      "settings": {},
     },
     "rust-analyzer": {
       "initialization_options": {
