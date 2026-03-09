@@ -49,7 +49,7 @@ PATH="$PATH:/opt/homebrew/opt/curl/bin:$HOME/CliApps:$HOME/go/bin:/opt/homebrew/
 
 # Example aliases
 alias gs='git status'
-alias gp='git pull'
+alias gp='git pull --rebase'
 alias gl='git log --pretty=format:"%h %s" --graph'
 gm() {
 	git add -A && git commit -m $@;
@@ -61,10 +61,8 @@ alias gu='git submodule update --recursive --remote'
 alias nsc='osascript ~/Documents/apple-scripts/toggle-natural-scrolling.scpt'
 
 # OpenTofu
-alias tp='tofu fmt && tofu plan -parallelism=12 -out=tfplan'
-alias ta='tofu apply -parallelism=12 tfplan && rm tfplan'
-
-alias d='docker'
+alias tp='terraform fmt && terraform plan -parallelism=12 -out=tfplan'
+alias ta='terraform apply -parallelism=12 tfplan && rm tfplan'
 
 # Go Lang
 export GOPATH=$HOME/go
@@ -99,13 +97,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 export NODE_OPTIONS="--no-node-snapshot"
 
-# Google Cloud
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/CliApps/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/CliApps/google-cloud-sdk/path.zsh.inc"; fi
-export GOOGLE_APPLICATION_CREDENTIALS="$HOME/.config/gcloud/application_default_credentials.json"
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/CliApps/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/CliApps/google-cloud-sdk/completion.zsh.inc"; fi
+# Google Cloudexport GOOGLE_APPLICATION_CREDENTIALS="$HOME/.config/gcloud/application_default_credentials.json"
 
 # Increase the IAP TCP upload bandwidth
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
@@ -140,11 +132,13 @@ timezsh() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
-# OLLAMA
-alias o=ollama
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tiscomacnb1384/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tiscomacnb1384/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/tiscomacnb1384/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tiscomacnb1384/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 # END OF FILE EVAL
 export DIRENV_LOG_FORMAT=
 eval "$(direnv hook zsh)"
-
-alias claude="/Users/ar667356/.claude/local/claude"
